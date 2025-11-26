@@ -28,7 +28,7 @@ const getBook = async (req, res) => {
         res.json(book)
     } catch (error) {
         console.error(error);
-        
+        res.status(400).json({ error: "Invalid book ID" })
     }
 }
 
@@ -54,7 +54,7 @@ const deleteBook = async (req, res) => {
         if (!deletedBook) return res.status(404).json({ message: "Book not found" });
         res.json({ message: "Book deleted successfully" });
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        res.status(400).json({ error: error.message });
     }
 }
 module.exports = {createBook, getBooks, getBook, updateBook, deleteBook}
